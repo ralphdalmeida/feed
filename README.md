@@ -1,4 +1,4 @@
-# feed
+# Feedof500px
 Engineering Assignment
 
 The app displays a feed of images with captions using the 500px API.
