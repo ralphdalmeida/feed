@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Feed From 500px API</string>
+    <string name="title_photo_detail">Photo Detail</string>
+    <string name="image_description">Default Photo</string>
+    <string name="photo_credit">Credit: </string>
+    <string name="feed_page_number">You have reached page&#160;</string>
+</resources>
