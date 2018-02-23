@@ -18,14 +18,14 @@ class ModelUnitTest {
     private val description: String = "The purpose of this test is to evaluate your technical skills when faced with an open-ended\n" +
             "engineering assignment"
     private val location: String = "Toronto"
-    private val taken_at: String = "2018-01-16"
+    private val takenAt: String = "2018-01-16"
     private val images: MutableList<Model.Images> = ArrayList()
     private val user: Model.User = Model.User(21, "Eng")
 
     @Test
     fun testPhotoModel() {
         images.add(Model.Images("https://imageurl.com"))
-        photo = Model.Photo(id, name, description, location, taken_at, images, user)
+        photo = Model.Photo(id, name, description, location, takenAt, images, user)
         assertNotNull(user)
         assertNotNull(images)
         assertNotNull(photo)

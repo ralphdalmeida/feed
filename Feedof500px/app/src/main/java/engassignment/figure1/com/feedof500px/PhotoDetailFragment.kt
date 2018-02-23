@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import engassignment.figure1.com.feedof500px.models.Model
 import engassignment.figure1.com.feedof500px.utilities.AppUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -28,11 +28,11 @@ class PhotoDetailFragment : Fragment() {
     /**
      * The photo this fragment is presenting.
      */
-    private var mPhoto: Model.Photo? = null
-    private var mPhotoDisposable: Disposable? = null
-    private var mImageView: ImageView? = null
-    private var mDescTextView: TextView? = null
-    private var mLocTextView: TextView? = null
+    private lateinit var mPhoto: Model.Photo
+    private lateinit var mPhotoDisposable: Disposable
+    private lateinit var mImageView: ImageView
+    private lateinit var mDescTextView: TextView
+    private lateinit var mLocTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +46,7 @@ class PhotoDetailFragment : Fragment() {
                             .subscribe({
                                     detail ->  run {
                                     mPhoto = detail.photo
-                                    activity?.toolbar_layout?.title = mPhoto?.name
+                                    activity?.toolbar_layout?.title = mPhoto.name
                                     // Update the view to show the photo detail.
                                     updateView()
                                 }
@@ -68,14 +68,14 @@ class PhotoDetailFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mPhotoDisposable?.dispose()
+        mPhotoDisposable.dispose()
     }
 
     private fun updateView() {
-        mPhoto?.let {
-            Picasso.with(context).load(it.images[0].https_url).into(mImageView)
-            mDescTextView?.text = it.description
-            mLocTextView?.text = it.location
+        mPhoto.let {
+            Glide.with(context!!).load(it.images[0].https_url).into(mImageView)
+            mDescTextView.text = it.description
+            mLocTextView.text = it.location
         }
     }
 

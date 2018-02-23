@@ -1,8 +1,8 @@
 package engassignment.figure1.com.feedof500px.adapters
 
-import android.support.v4.app.FragmentManager
 import android.content.Intent
 import android.os.Bundle
+import android.support.v4.app.FragmentManager
 import android.support.v7.widget.RecyclerView
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import com.squareup.picasso.Picasso
+import com.bumptech.glide.Glide
 import engassignment.figure1.com.feedof500px.PhotoDetailActivity
 import engassignment.figure1.com.feedof500px.PhotoDetailFragment
 import engassignment.figure1.com.feedof500px.R
@@ -68,8 +68,11 @@ class SimpleItemRecyclerViewAdapter(private val supportFragmentManager: Fragment
             AppUtils.LOADING_PHOTO -> {
                 holder as FeedViewHolder
                 if (!TextUtils.isEmpty(photo.images[0].https_url) && photo.images[0].https_url != "null")
-                    Picasso.with(holder.mImageView.context).load(photo.images[0].https_url).into(holder.mImageView)
-                else holder.mImageView.setImageResource(android.R.drawable.gallery_thumb)
+                    Glide.with(holder.mImageView.context).load(photo.images[0].https_url).into(holder.mImageView)
+                else {
+                    Glide.with(holder.mImageView.context).clear(holder.mImageView)
+                    holder.mImageView.setImageResource(android.R.drawable.gallery_thumb)
+                }
 
                 if (!TextUtils.isEmpty(photo.name) && photo.name != "null") {
                     holder.mNameText.visibility = View.VISIBLE

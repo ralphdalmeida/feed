@@ -31,7 +31,7 @@ class PhotoListActivity : AppCompatActivity() {
      * device.
      */
     private var mTwoPane: Boolean = false
-    private var mDisposable: Disposable? = null
+    private lateinit var mDisposable: Disposable
     private var mIsLastPage: Boolean = false
     private var mIsLoading: Boolean = false
     private var mTotalPages: Int = 0
@@ -117,7 +117,7 @@ class PhotoListActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        mDisposable?.dispose()
+        mDisposable.dispose()
     }
 
 }
